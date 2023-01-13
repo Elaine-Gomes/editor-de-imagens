@@ -13,24 +13,20 @@ body{
     background-color:#FFE4E1 ;
 }
 .container{
-    width: 850px;
+    width: 900px;
     background-color:#F5FFFA ;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.553);
     padding: 20px 25px 25px;
     border-radius: 10px;
 }
 .container h2{
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: 500;
     padding-left:20px;
 }
 .container .wrapper{
     display: flex;
     margin: 20px;
-}
-.preview-img img{
-    width: 
-    100%;
 }
 .wrapper .editor-panel{
     width:200px;
@@ -46,7 +42,6 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
 }
 .editor-panel button{
     height: 40px;
@@ -59,5 +54,105 @@ body{
 }
 .editor-panel .filter button{
     width: calc(100% / 2 - 4px);
+}
+.filter button.active{
+    color: #fff;
+    background-color:#DA70D6;
+    border-color: #BA55D3;
+}
+.editor-panel button:hover{
+    background-color:	#FFF0F5;
+    color: #BA55D3;
+    transition: .8s;
+    cursor: pointer;
+}
+.editor-panel .slider{
+    margin-top:12px;
+}
+.editor-panel .slide .filter-info{
+    display: flex;
+    justify-content:space-between;
+    color:#696969;
+    font-size: .9em;
+}
+.editor-panel .slider input{
+    width: 100%;
+    height: 5px;
+    accent-color:#DA70D6;
+}
+.editor-panel .rotate{
+    background-color: #efb3ed8f;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 3px;
+}
+.editor-panel .rotate button{
+    width: calc(100% / 2 - 4px);
+    padding: 5px;
+}
+.controls{
+    width:380px; 
+    display: flex;
+    position: relative;
+    left: 14px;
+    justify-content:space-evenly;
+}
+
+.rotate button:nth-child(3),
+.rotate button:nth-child(4){
+    font-size: 1.1em;
+}
+.preview-img img{
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    margin-left: 20px;
+    object-fit: contain;
+}
+.preview-img{
+    width: 680px;
+}
+.controls button{
+    padding: 6px;
+    cursor: pointer;
+    border:none;
+    color: #696969;
+    border-radius: 2px;
+    box-shadow: 5px 4px 15px 2px rgba(0, 0, 0, 0.553);
+    transition: 1s;
+    text-transform: uppercase;
+}
+.controls button:hover{
+    background-color: #DDA0DD;
+    color: #fff;
     
+}
+@media(max-width:760px){
+    .container{
+        padding: 25px;
+    }
+    .container .wrapper{
+        flex-wrap: wrap-reverse;
+
+    }
+    .wrapper .editor-panel{
+        width: 100%;
+    }
+    .wrapper .preview-img{
+        width:100%;
+        margin: 0 0 15px;
+    }
+}
+@media(max-width:500px){
+    .controls button{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .controls .row{
+        width: 100%;
+
+    }
+    .controls .row .save-img{
+        margin-left: 0px;
+    }
 }
