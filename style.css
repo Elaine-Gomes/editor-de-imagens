@@ -13,11 +13,16 @@ body{
     background-color:#FFE4E1 ;
 }
 .container{
-    width: 900px;
+    width: 940px;
+    height: 600px;
     background-color:#F5FFFA ;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.553);
-    padding: 20px 25px 25px;
+    padding: 10px 25px 10px;
     border-radius: 10px;
+}
+.container.disable :where(.options,.rotate, .reset-filter, .save-img){
+    opacity:0.6;
+    pointer-events:none;
 }
 .container h2{
     font-size: 1.5em;
@@ -29,8 +34,8 @@ body{
     margin: 20px;
 }
 .wrapper .editor-panel{
-    width:200px;
-    padding: 15px 20px;
+    width:450px;
+    padding: 35px 20px;
     border: 1px solid #ccc;
 }
 .editor-panel .title{
@@ -69,7 +74,7 @@ body{
 .editor-panel .slider{
     margin-top:12px;
 }
-.editor-panel .slide .filter-info{
+ .filter-info{
     display: flex;
     justify-content:space-between;
     color:#696969;
@@ -90,13 +95,6 @@ body{
     width: calc(100% / 2 - 4px);
     padding: 5px;
 }
-.controls{
-    width:380px; 
-    display: flex;
-    position: relative;
-    left: 14px;
-    justify-content:space-evenly;
-}
 
 .rotate button:nth-child(3),
 .rotate button:nth-child(4){
@@ -106,14 +104,26 @@ body{
     width: 100%;
     height: 100%;
     max-width: 600px;
-    margin-left: 20px;
+    margin-left: 10px;
     object-fit: contain;
+
 }
 .preview-img{
     width: 680px;
 }
+.controls{
+    width:480px; 
+    display: flex;
+    position: relative;
+    top: 30px;
+    justify-content:center;
+    overflow: hidden;
+}
 .controls button{
-    padding: 6px;
+    width:135px;
+    padding: 8px;
+    position: relative;
+    right: 40px;
     cursor: pointer;
     border:none;
     color: #696969;
@@ -128,22 +138,41 @@ body{
     
 }
 @media(max-width:760px){
+    .editor-panel{
+        height: 100vh;
+    }
     .container{
         padding: 25px;
+        height: 100%;
     }
     .container .wrapper{
         flex-wrap: wrap-reverse;
-
     }
     .wrapper .editor-panel{
         width: 100%;
     }
     .wrapper .preview-img{
-        width:100%;
-        margin: 0 0 15px;
+        width:100%;  
+    }
+    .controls{
+        left: 20px;
+        width:500px;
+        flex-direction: column;
+        
+    }
+    .controls button{
+        width: 100%; 
+        border:1px solid rgb(137, 137, 137);
+        box-shadow: none;
     }
 }
 @media(max-width:500px){
+    .editor-panel{
+        height: 100vh;
+    }
+    .container{
+        height: 100%;
+    }
     .controls button{
         width: 100%;
         margin-bottom: 10px;
