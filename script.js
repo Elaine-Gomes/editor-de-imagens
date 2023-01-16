@@ -7,6 +7,7 @@ const rotateOptions = document.querySelectorAll('.rotate button');
 const resetFilterBtn = document.querySelector('.reset-filter');
 const previewImage = document.querySelector('.preview-img img');
 const chooseImgBtn = document.querySelector('.choose-img');
+const saveImgBtn = document.querySelector('.save-img');
 
 let brightness = 100,saturation = 100, inversion =0 ,grayScale = 0;
 let rotate =0,flipHorizontal=1,flipVertical=1
@@ -18,7 +19,7 @@ const applyFilters= ()=>{
 
 const loadImage=()=>{
     let file = fileInput.files[0];
-    console.log(file);
+   
     if(!file)return
     previewImage.src = URL.createObjectURL(file);
     previewImage.addEventListener('load',()=>{
@@ -50,7 +51,6 @@ filterOptions.forEach(option=>{
 });
 
 const updateFilter = ()=>{
-    console.log(filterSlider.value);
     filterValue.innerHTML=`${filterSlider.value}%`;
     const selectedFilter= document.querySelector('.filter .active');
 
@@ -85,7 +85,27 @@ const resetFilter = ()=>{
      applyFilters () 
 }
 
+const saveImage=()=>{
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext("2d");
+    canvas.width=previewImage.naturalWidth;
+    canvas.height=previewImage.naturalHeight;
+    
+    ctx.filter=`brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayScale}%)`
+    ctx.translate(canvas.width /2,canvas.height / 2)
+    if(rotate !==0){
+        ctx.rotate(rotate*Math.PI / 180)
+    }
+    ctx.scale(flipHorizontal, flipVertical);
+    ctx.drawImage(previewImage,-canvas.width /2,-canvas.height /2,canvas.width,canvas.height);
+    const link = document.createElement("a");
+    link.download='image.jpg'
+    link.href=canvas.toDataURL();
+    link.click();
+    // document.body.appendChild(canvas)
+}
 filterSlider.addEventListener('input',updateFilter);
 fileInput.addEventListener('change',loadImage);
-resetFilterBtn.addEventListener('click',resetFilter)
+resetFilterBtn.addEventListener('click',resetFilter);
+saveImgBtn.addEventListener('click',saveImage);
 chooseImgBtn.addEventListener('click',()=>fileInput.click());
